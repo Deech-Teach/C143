@@ -56,15 +56,9 @@ noseX = "";
 noseY = "";
 GameStatus = "";
 
-
-function startGame(){
-   GameStatus = "start";
-   document.getElementById("status").innerHTML = " Game Is Loading";
-}
-
 function game(){
 
-  console.log("noseX = " + noseX + " ,noseY = " + noseY);
+  console.log("noseX = " + noseX +" ,noseY =  "+ noseY);
 
   instializeInDraw();
   moveEnvironment(mario);
@@ -78,7 +72,7 @@ function game(){
     fill(255, 255, 255);
     textSize(40);
     textAlign(CENTER);
-    text("Press play button to start the game", gameConfig.screenX/2, gameConfig.screenY/2);
+    text("Press Play Button To Start The Game ", gameConfig.screenX/2, gameConfig.screenY/2);
     textSize(40);
 
     stroke(255);
@@ -121,11 +115,15 @@ function game(){
   }
 }  
 
-
+function startGame()
+{
+  GameStatus = "start";
+  document.getElementById("status").innerHTML = "Game Is Loading";
+}
 
 // change game status if any key is pressed
 function changeGameStatud(character){
- if(GameStatus=="start" && noseX !="" & gameConfig.status==="start") { 
+ if(noseX !="" && gameConfig.status==="start" && GameStatus=="start") { 
    document.getElementById("status").innerHTML = "Game Is Loaded";
    world_start.play();
  initializeCharacterStatus(mario)
@@ -312,10 +310,9 @@ function manualControl(character){
 
 /* Movements of character */
 function jumping(character){
-	if( (noseY < 200)&& character.live || (touchIsDown&&character.live) ){
-    mario_jump.play();
+	if( (noseY < 168  &&character.live) || (touchIsDown&&character.live) ){
     character.velocity.y+=gameConfig.jump;
-   
+    mario_jump.play();
 	}
 }
 
